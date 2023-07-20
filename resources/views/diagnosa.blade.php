@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Sistem Diagnosa Penyakit Kambing Perah- Index</title>
+  <title>Sistem Diagnosa Penyakit Ayam KUB- Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -52,7 +52,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="{{ route('welcome') }}">Home</a></li>
           <li><a class="nav-link scrollto" href="{{ route('welcome') }}">Artikel</a></li>
-          <li><a class="nav-link scrollto" href="{{ route('welcome') }}">Penyakit Kambing</a></li>
+          <li><a class="nav-link scrollto" href="{{ route('welcome') }}">Penyakit Ayam</a></li>
           <li><a class="nav-link scrollto" href="#diagnosa_penyakit">Diagnosa Penyakit</a></li>
             @if (Auth::check())
               <li>
@@ -89,7 +89,7 @@
           <div class="col-lg-9 text-center text-lg-start">
             <h3>Diagnosa Penyakit</h3>
             <p>
-              Selamat datang di halaman diagnosa penyakit, silahkan diagnosa penyakit kambing anglo nubian peliharaan anda
+              Selamat datang di halaman diagnosa penyakit, silahkan diagnosa penyakitAyam KU peliharaan anda
             </p>
           </div>
         </div>

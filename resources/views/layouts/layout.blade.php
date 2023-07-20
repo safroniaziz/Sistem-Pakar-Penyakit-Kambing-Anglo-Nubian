@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>Diagnosa Penyakit Kambing</title>
+  <title>Diagnosa Penyakit Ayam KUB</title>
   <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -59,7 +59,7 @@
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini"><i class="fa fa-home"></i></span>
       <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg" style="font-size:14px;"><b>Diagnosa Penyakit</b> KAMBING </span>
+      <span class="logo-lg" style="font-size:14px;"><b>Diagnosa Penyakit</b> Ayam KUB </span>
     </a>
     <!-- Header Navbar: style can be found in header.less -->
     <nav class="navbar navbar-static-top">
@@ -134,11 +134,11 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Sistem Informasi Diagnosa Penyakit Kambing Perah
-        <small>ANGLO NUBIAN</small>
+        Sistem Informasi Diagnosa Penyakit 
+        <small>Ayam KUB</small>
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-home"></i> Diagnosa Penyakit Kambing</a></li>
+        <li><a href="#"><i class="fa fa-home"></i> Diagnosa Penyakit Ayam KUB</a></li>
         <li class="active">@yield('location2')</li>
         <li class="active">@yield('location3')</li>
       </ol>
@@ -156,7 +156,7 @@
 
   <footer class="main-footer ">
     <div class="pull-right hidden-xs">
-      <a href="" target="_blank"><b>Sistem Informasi Diagnosa Penyakit Kambing Anglo Nubian</b></a>
+      <a href="" target="_blank"><b>Sistem Informasi Diagnosa Penyakit Ayam KU</b></a>
     </div>
     <strong>Copyright &copy; 2023 <a href="">Prita Puspita Sari</a>.</strong> All rights
     reserved.

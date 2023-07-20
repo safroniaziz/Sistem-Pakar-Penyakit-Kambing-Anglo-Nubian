@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-        <title>Sistem Pakar Penyakit Kambing | Daftar</title>
+        <title>Sistem Pakar Penyakit Ayam KUB | Daftar</title>
         <link rel="shortcut icon" href="{{ asset('assets/images/logo.png') }}">
         <link href="{{ asset('assets/bootstrap/dist/css/bootstrap.min.css') }}" rel="stylesheet">
         <link rel="stylesheet" href=" {{ asset('css/style_register.css') }} ">
@@ -19,7 +19,7 @@
                     </div>
                     @else
                     <h3>Halaman Pendaftaran User</h3>
-                    <p style="text-align:center; margin-bottom:20px;">Sistem Informasi Diagnosa Penyakit Kambing Perah Anglo Nubian</p>
+                    <p style="text-align:center; margin-bottom:20px;">Sistem Informasi Diagnosa Penyakit Ayam KUB Anglo Nubian</p>
                 @endif
                 <form method="post" action="{{ route('login') }}">
                     @csrf

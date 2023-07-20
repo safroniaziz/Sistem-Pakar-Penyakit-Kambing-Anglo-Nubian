@@ -18,7 +18,7 @@
 @endsection
 @section('content-title')
     Dashboard
-    <small>Diagnosa Penyakit Kambing Anglo Nubian</small>
+    <small>Diagnosa Penyakit Ayam KU</small>
 @endsection
 @section('page')
     <li><a href="#"><i class="fa fa-home"></i> Sistem Pakar</a></li>
@@ -63,7 +63,7 @@
     {{-- <h4>Selamat Datang <b>{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</b></h4> --}}
 
     <p>
-        Sistem Informasi Diagnosa Penyakit Kambing Anglo Nubian adalah Sistem Informasi Pakar yang digunakan untuk menentukan penyakit hewan khususnya kambing <b>Anglo Nubian</b><br>
+        Sistem Informasi Diagnosa Penyakit Ayam KU adalah Sistem Informasi Pakar yang digunakan untuk menentukan penyakit hewan khususnya A <b>Anglo Nubian</b><br>
         <i><b>Catatan</b>: Untuk keamanan, jangan lupa keluar setelah menggunakan aplikasi</i>
     </p>
 </div>

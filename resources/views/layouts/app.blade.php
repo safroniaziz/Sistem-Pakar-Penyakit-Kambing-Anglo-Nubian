@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Sistem Diagnosa Penyakit Kambing Perah- Index</title>
+  <title>Sistem Diagnosa Penyakit Ayam KUB- Index</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -51,7 +51,7 @@
         <ul>
           <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="#artikel">Artikel</a></li>
-          <li><a class="nav-link scrollto" href="#penyakit_kambing">Penyakit Kambing</a></li>
+          <li><a class="nav-link scrollto" href="#penyakit_kambing">Penyakit Ayam KUB</a></li>
           <li><a class="nav-link scrollto" href="#diagnosa_penyakit">Diagnosa Penyakit</a></li>
           <li>
             @if (Auth::check())
@@ -87,10 +87,10 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>Selamat Datang di Sistem Informasi</h1>
-          <h2>Diagnosa Penyakit Kambing Perah ANGLO NUBIAN</h2>
+          <h2>Diagnosa Penyakit Ayam KUB ANGLO NUBIAN</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="{{ route('diagnosa') }}" class="btn-get-started scrollto">Mulai Diagnosa</a>
-            <a href="https://www.youtube.com/watch?v=igK8BmBwqJA"  class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Kambing Anglo Nubian</span></a>
+            <a href="https://www.youtube.com/watch?v=igK8BmBwqJA"  class="glightbox btn-watch-video"><i class="bi bi-play-circle"></i><span>Ayam KU</span></a>
           </div>
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
@@ -110,7 +110,7 @@
               <div class="section-title">
                 <h2>Artikel</h2>
                 <p>
-                  Berikut adalah artikel-artikel yang dikumpulkan dari berbagai macam sumber website yang membahas tentang kambing anglo nubian, 
+                  Berikut adalah artikel-artikel yang dikumpulkan dari berbagai macam sumber website yang membahas tentang Ayam KU, 
                 </p>
               </div>
       
@@ -148,9 +148,9 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Data Penyakit Kambing</h2>
+          <h2>Data Penyakit Ayam KUB</h2>
           <p>
-            Berikut adalah data penyakit kambing yang diambil dari berbagai sumber, dan akan dilakukan proses sistem pakar pada penelitian
+            Berikut adalah data penyakit ayam kub yang diambil dari berbagai sumber, dan akan dilakukan proses sistem pakar pada penelitian
           </p>
         </div>
 
@@ -188,7 +188,7 @@
           <div class="col-lg-9 text-center text-lg-start">
             <h3>Diagnosa Penyakit</h3>
             <p>
-              Untuk melakukan diagnosa penyakit kambing anglo nubian, silahkan klik pada tombol di samping
+              Untuk melakukan diagnosa penyakit Ayam KU, silahkan klik pada tombol di samping
             </p>
           </div>
           <div class="col-lg-3 cta-btn-container text-center">
