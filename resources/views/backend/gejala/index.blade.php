@@ -92,8 +92,8 @@
                                     <th>No</th>
                                     <th>Kode Gejala</th>
                                     <th>Nama Gejala</th>
-                                    <th>Foto</th>
-                                    <th>Video</th>
+                                    <th>Nilai</th>
+                                    <th>Teta</th>
                                     <th>Aksi</th>
                                 </tr>
     
@@ -108,21 +108,8 @@
                                         <td>{{ $index+1 }}</td>
                                         <td>KG{{ $gejala->kode_gejala }}</td>
                                         <td>{!! $gejala->nama_gejala !!}</td>
-                                        <td>
-                                            @if ($gejala->foto != null || $gejala->foto != "")
-                                                <img src="{{ asset('upload/foto_gejala/'.$gejala->foto) }}" style="height:80px" alt="">
-                                            @else
-                                                <small class="text-danger">tidak ada foto</small>
-                                            @endif
-                                        </td>
-                                        <td>
-                                            @if ($gejala->video != null && $gejala->video != "")
-                                                <a href="{{ $url2 }}" target="_blank">klik untuk lihat video</a>
-                                                {{-- <iframe style="width: 100%; height:80px;" src="{{ $url2 }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> --}}
-                                                @else
-                                                <small class="text-danger">tidak ada video</small>
-                                            @endif
-                                        </td>
+                                        <td>{{ $gejala->nilai }}</td>
+                                        <td>{{ $gejala->teta  }}</td>
                                         <td>
                                             <table>
                                                 <tr>
@@ -160,12 +147,8 @@
                                                 </div>
 
                                                 <div class="form-group col-md-12">
-                                                    <label for="">Foto</label>
-                                                    <input type="file" name="foto" class="form-control">
-                                                </div>
-                                                <div class="form-group col-md-12">
-                                                    <label for="">Kode Video Youtube</label>
-                                                    <input type="text" name="video" class="form-control">
+                                                    <label for="">Nilai</label>
+                                                    <input type="text" name="nilai" class="form-control">
                                                 </div>
                                             </div>
                                         </div>
@@ -194,16 +177,12 @@
                                         <input type="hidden" name="id" id="id">
                                         <div class="form-group col-md-12">
                                             <label for="">Nama Gejala</label>
-                                            <input type="text" name="nama_gejala_edit" id="nama_gejala_edit" class="form-control" required> 
+                                            <input type="text" name="nama_gejala" id="nama_gejala_edit" class="form-control" required> 
                                         </div>
 
                                         <div class="form-group col-md-12">
-                                            <label for="">Foto</label>
-                                            <input type="file" name="foto_edit" id="foto_edit" class="form-control">
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Kode Video Youtube</label>
-                                            <input type="text" name="video_edit" id="video_edit" class="form-control">
+                                            <label for="">Nilai</label>
+                                            <input type="text" name="nilai" id="nilai_edit" class="form-control">
                                         </div>
                                     </div>
                                 </div>
@@ -238,7 +217,7 @@
                     $('#modal-update').modal('show');
                     $('#id').val(data.kode_gejala);
                     $('#nama_gejala_edit').val(data.nama_gejala);
-                    $('#video_edit').val(data.video);
+                    $('#nilai_edit').val(data.nilai);
                 },
                 error:function(){
                     alert("Nothing Data");

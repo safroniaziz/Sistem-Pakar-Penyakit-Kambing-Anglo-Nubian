@@ -160,6 +160,10 @@
               @php
                   $url2 = "https://www.youtube.com/watch?v=".$penyakit->video;
               @endphp
+              @else
+              @php
+                  $url2 = null;
+              @endphp
             @endif
               <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
                 <div class="icon-box">

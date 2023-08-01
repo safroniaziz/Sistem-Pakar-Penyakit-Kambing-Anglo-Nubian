@@ -21,4 +21,9 @@ class DataPenyakit extends Model
     public function penangananPenyakits(){
         return $this->hasMany(PenangananPenyakit::class, 'penyakit_id');
     }
+
+    public function gejalas()
+    {
+        return $this->belongsToMany(DataGejala::class, 'basic_pengetahuans', 'kode_gejala', 'kode_penyakit');
+    }
 }

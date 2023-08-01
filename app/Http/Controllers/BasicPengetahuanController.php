@@ -24,8 +24,6 @@ class BasicPengetahuanController extends Controller
         BasicPengetahuan::create([
             'kode_gejala' =>  $request->gejala_id,
             'kode_penyakit'    =>  $request->penyakit_id,
-            'mb'    =>  $request->nilai_mb,
-            'md'    =>  $request->nilai_md,
         ]);
 
         return redirect()->route('basic_pengetahuan')->with(['success'    =>  'Data Basic Pengetahuan Berhasil Ditambahkan']);
@@ -40,8 +38,6 @@ class BasicPengetahuanController extends Controller
         BasicPengetahuan::where('id',$request->id)->update([
             'kode_gejala' =>  $request->gejala_id,
             'kode_penyakit'    =>  $request->penyakit_id,
-            'mb'    =>  $request->nilai_mb,
-            'md'    =>  $request->nilai_md,
         ]);
 
         return redirect()->route('basic_pengetahuan')->with(['success'    =>  'Data Basic Pengetahuan Berhasil Diubah']);

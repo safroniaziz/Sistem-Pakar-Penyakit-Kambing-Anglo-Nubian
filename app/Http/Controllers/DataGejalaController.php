@@ -30,19 +30,15 @@ class DataGejalaController extends Controller
             $kode_gejala = sprintf("%03s", $kode_baru);
         }
 
-        $model = $request->all();
-        $model['foto'] = null;
-
-        if ($request->hasFile('foto')) {
-            $model['foto'] = Str::slug($request->nama_gejala).'-'.$kode_gejala.uniqid().'.'.$request->foto->getClientOriginalExtension();
-            $request->foto->move(public_path('/upload/foto_gejala/'), $model['foto']);
-        }
+        $nilai = $request->nilai/100;
+        $sisa = 100-$request->nilai;
+        $teta = $sisa/100;
 
         DataGejala::create([
             'kode_gejala'   =>  $kode_gejala,
             'nama_gejala' =>  $request->nama_gejala,
-            'foto'    =>  $model['foto'],
-            'video'    =>  $request->video,
+            'nilai'    =>  $nilai,
+            'teta'    =>  $teta,
         ]);
 
         return redirect()->route('gejala')->with(['success'    =>  'Data Gejala Berhasil Ditambahkan']);
@@ -55,21 +51,14 @@ class DataGejalaController extends Controller
     }
 
     public function update(Request $request){
-        $foto = DataGejala::find($request->id);
-        $model = $request->all();
-        $model['foto_edit'] = $foto->foto;
-        if ($request->hasFile('foto_edit')){
-            if (!$foto->foto == NULL){
-                unlink(public_path('upload/foto_gejala/'.$foto->foto));
-            }
-            $model['foto_edit'] = Str::slug($request->nama_gejala).'-'.$request->id.uniqid().'.'.$request->foto_edit->getClientOriginalExtension();
-            $request->foto_edit->move(public_path('/upload/foto_gejala/'), $model['foto_edit']);
-        }
+        $nilai = $request->nilai/100;
+        $sisa = 100-$request->nilai;
+        $teta = $sisa/100;
 
         DataGejala::where('kode_gejala',$request->id)->update([
-            'nama_gejala' =>  $request->nama_gejala_edit,
-            'foto'    =>  $model['foto_edit'],
-            'video'    =>  $request->video_edit,
+            'nama_gejala' =>  $request->nama_gejala,
+            'nilai'    =>  $nilai,
+            'teta'    =>  $teta,
         ]);
 
         return redirect()->route('gejala')->with(['success'    =>  'Data Gejala Berhasil Diubah']);

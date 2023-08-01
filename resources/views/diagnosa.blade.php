@@ -128,52 +128,16 @@
                         <th colspan="4">Berikut penyakit yang ditemukan pada gejala yang anda pilih</th>
                       </tr>
                       <tr>
-                        <th>No</th>
                         <th>Kode Penyakit</th>
                         <th>Nama Penyakit</th>
-                        <th>Nilai CF</th>
+                        <th>Persentase</th>
                       </tr>
                     </thead>
                     <tbody>
-                      @foreach ($hasil as $index => $hasil)
-                        @php
-                            $nama_penyakit = \App\Models\DataPenyakit::select('nama_penyakit')->where('kode_penyakit',$hasil['kode_penyakit'])->first();
-                        @endphp
-                          <tr>
-                            <td>{{ $index+1 }}</td>
-                            <td>KP {{ $hasil['kode_penyakit'] }}</td>
-                            <td>{{ $nama_penyakit->nama_penyakit }}</td>
-                            <td>{{ $hasil['nilai_cf'] }}</td>
-                          </tr>
-                      @endforeach
+                        <td>{{ $penyakit->kode_penyakit }}</td>
+                        <td>{{ $penyakit->nama_penyakit }}</td>
+                        <td>{{ $m_last*100 }}%</td>
                     </tbody>
-                </table>
-                <table class="table table-hover table-bordered table-striped">
-                  <thead>
-                    <tr>
-                      <th colspan="3">Berikut penyakit hasil diagnosa dengan persentase paling tinggi</th>
-                    </tr>
-                    <tr>
-                      <th>Kode Penyakit</th>
-                      <th> : </th>
-                      <td>KP {{ $diagnosa->kode_penyakit }}</td>
-                    </tr>
-                    <tr>
-                      <th>Nama Penyakit</th>
-                      <th> : </th>
-                      <td>{{ $diagnosa->dataPenyakit->nama_penyakit }}</td>
-                    </tr>
-                    <tr>
-                      <th>Nilai CF</th>
-                      <th> : </th>
-                      <td>{{ $diagnosa->nilai_cf }}</td>
-                    </tr>
-                    <tr>
-                      <th>Persentase</th>
-                      <th> : </th>
-                      <td>{{ $diagnosa->persentase }}%</td>
-                    </tr>
-                  </thead>
                 </table>
               </div>
             @endif
@@ -182,7 +146,7 @@
                 {{ csrf_field() }} {{ method_field('POST') }}
                 <div class="row">
                   <div class="form-group col-md-12">
-                    <label for="name">Your Name</label>
+                    <label for="name">Pilih Gejala</label>
                     <select name="gejala_id[]" class="form-control js-example-basic-single" multiple="multiple" id="" required>
                         <option disabled>-- pilih gejala --</option>
                         @foreach ($gejalas as $gejala)

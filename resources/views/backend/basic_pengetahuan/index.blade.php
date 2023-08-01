@@ -93,8 +93,6 @@
                                     <th>Kode Penyakit</th>
                                     <th>Nama Penyakit</th>
                                     <th>Nama Gejala</th>
-                                    <th>Nilai MB</th>
-                                    <th>Nilai MD</th>
                                     <th>Aksi</th>
                                 </tr>
     
@@ -110,8 +108,6 @@
                                         <td>{{ $basicPengetahuan->penyakit->kode_penyakit }}</td>
                                         <td>{{ $basicPengetahuan->penyakit->nama_penyakit }}</td>
                                         <td>{{ $basicPengetahuan->gejala->nama_gejala }}</td>
-                                        <td>{{ $basicPengetahuan->mb }}</td>
-                                        <td>{{ $basicPengetahuan->md }}</td>
                                         <td>
                                             <table>
                                                 <tr>
@@ -161,47 +157,6 @@
                                                         @endforeach
                                                     </select>
                                                 </div>
-                                                <div class="form-group col-md-12">
-                                                    <label for="">Nilai MB</label>
-                                                    <select name="nilai_mb" class="form-control" id="nilai_mb">
-                                                        <option disabled selected>-- pilih nilai md --</option>
-                                                        <option value="0.1">0.1</option>
-                                                        <option value="0.15">0.15</option>
-                                                        <option value="0.2">0.2</option>
-                                                        <option value="0.25">0.25</option>
-                                                        <option value="0.3">0.3</option>
-                                                        <option value="0.35">0.35</option>
-                                                        <option value="0.4">0.4</option>
-                                                        <option value="0.45">0.45</option>
-                                                        <option value="0.5">0.5</option>
-                                                        <option value="0.55">0.55</option>
-                                                        <option value="0.6">0.6</option>
-                                                        <option value="0.65">0.65</option>
-                                                        <option value="0.7">0.7</option>
-                                                        <option value="0.75">0.75</option>
-                                                        <option value="0.8">0.8</option>
-                                                        <option value="0.85">0.85</option>
-                                                        <option value="0.9">0.9</option>
-                                                        <option value="0.95">0.95</option>
-                                                        <option value="1">1</option>
-                                                    </select>
-                                                </div>
-                                                <div class="form-group col-md-12">
-                                                    <label for="">Nilai MD</label>
-                                                    <select name="nilai_md" class="form-control" id="nilai_md">
-                                                        <option disabled selected>-- pilih nilai md --</option>
-                                                        <option value="0">0</option>
-                                                        <option value="0.01">0.01</option>
-                                                        <option value="0.02">0.02</option>
-                                                        <option value="0.03">0.03</option>
-                                                        <option value="0.04">0.04</option>
-                                                        <option value="0.05">0.05</option>
-                                                        <option value="0.06">0.06</option>
-                                                        <option value="0.07">0.07</option>
-                                                        <option value="0.08">0.08</option>
-                                                        <option value="0.09">0.09</option>
-                                                    </select>
-                                                </div>
                                             </div>
                                         </div>
                                         <div class="modal-footer">
@@ -243,47 +198,6 @@
                                                 @foreach ($gejalas as $gejala)
                                                     <option value="{{ $gejala->kode_gejala }}">{{ $gejala->nama_gejala }}</option>
                                                 @endforeach
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Nilai MB</label>
-                                            <select name="nilai_mb" class="form-control" id="nilai_mb_edit">
-                                                <option disabled selected>-- pilih nilai md --</option>
-                                                <option value="0.1">0.1</option>
-                                                <option value="0.15">0.15</option>
-                                                <option value="0.2">0.2</option>
-                                                <option value="0.25">0.25</option>
-                                                <option value="0.3">0.3</option>
-                                                <option value="0.35">0.35</option>
-                                                <option value="0.4">0.4</option>
-                                                <option value="0.45">0.45</option>
-                                                <option value="0.5">0.5</option>
-                                                <option value="0.55">0.55</option>
-                                                <option value="0.6">0.6</option>
-                                                <option value="0.65">0.65</option>
-                                                <option value="0.7">0.7</option>
-                                                <option value="0.75">0.75</option>
-                                                <option value="0.8">0.8</option>
-                                                <option value="0.85">0.85</option>
-                                                <option value="0.9">0.9</option>
-                                                <option value="0.95">0.95</option>
-                                                <option value="1">1</option>
-                                            </select>
-                                        </div>
-                                        <div class="form-group col-md-12">
-                                            <label for="">Nilai MD</label>
-                                            <select name="nilai_md" class="form-control" id="nilai_md_edit">
-                                                <option disabled selected>-- pilih nilai md --</option>
-                                                <option value="0">0</option>
-                                                <option value="0.01">0.01</option>
-                                                <option value="0.02">0.02</option>
-                                                <option value="0.03">0.03</option>
-                                                <option value="0.04">0.04</option>
-                                                <option value="0.05">0.05</option>
-                                                <option value="0.06">0.06</option>
-                                                <option value="0.07">0.07</option>
-                                                <option value="0.08">0.08</option>
-                                                <option value="0.09">0.09</option>
                                             </select>
                                         </div>
                                     </div>

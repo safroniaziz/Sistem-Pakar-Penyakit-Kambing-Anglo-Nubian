@@ -8,88 +8,102 @@ use App\Models\DataPenyakit;
 use App\Models\Hasil;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Collection; // Pastikan Anda sudah mengimport Illuminate\Support\Collection jika belum diimpor sebelumnya
 
 class DiagnosaController extends Controller
 {
     public function diagnosa(Request $request){
-        $gejalas = $request->gejala_id;
-        $penyakits = DataPenyakit::orderBy('created_at','asc')->get();
-        $variables = array();
-        $hasil = array();
-        foreach ($penyakits as $penyakit) {
-            
-            for ($i=0; $i <count($gejalas) ; $i++) { 
-                $basic_pengetahuan = BasicPengetahuan::where('kode_penyakit',$penyakit->kode_penyakit)
-                                                        ->where('kode_gejala',$gejalas[$i])
-                                                        ->first();
-                if (!empty($basic_pengetahuan) || $basic_pengetahuan != "") {
-                    $variables[$penyakit['kode_penyakit']][] = $gejalas[$i];
-                }
-            }
-            if (empty($variables)) {
-                return redirect()->back()->with(['error'    =>  'Tidak ada penyakit yang cocok untuk gejala yang anda pilih']);
-            }
-            foreach($variables as $key){
-                $array[] = $key;
-            }
-            $mb = 0;
-            $md = 0;
-            foreach($array[0] as $gejala){
-                
-                $data_gejala = BasicPengetahuan::where('kode_penyakit',$penyakit->kode_penyakit)
-                            ->select('mb','md')
-                            ->where('kode_gejala',$gejala)
-                            ->first();
-                if (!empty($data_gejala)) {
-                    $mb_baru = $mb + ($data_gejala->mb * (1 - $mb));
-                    $md_baru = $md + ($data_gejala->md * (1 - $md));
-                    $cf_baru = $mb_baru - $md_baru;
-                    $perhitungan[$penyakit->kode_penyakit][] = [
-                            'kode_penyakit' =>  $penyakit->kode_penyakit,
-                            'mb'            =>  $mb,
-                            'md'            =>  $md,
-                            'kode_gejala'   =>  $gejala,
-                            'mb_baru'   =>  $mb_baru,
-                            'md_baru'   =>  $md_baru,
-                            'cf_baru'   =>  $cf_baru,
-                        ];
-                    $mb = $mb_baru;
-                    $md = $md_baru;
-                }
-            }
-            $mb = 0;
-            $md = 0;
-        }
-        foreach($perhitungan as $key){
-            $hasil[] = array(
-                'kode_penyakit'  =>  end($key)['kode_penyakit'],
-                'nilai_cf'  =>  end($key)['cf_baru'],
-            );
-        }
-        $value = max(array_column($hasil, 'nilai_cf'));
-        $hasil_diagnosa = array();
-        foreach ($hasil as  $hasil2) {
-            if ($hasil2['nilai_cf'] == $value) {
-                $hasil_diagnosa[] = $hasil2;
+        $gejalaIds = $request->gejala_id;
+        $dataGejala = [];
+
+        foreach ($gejalaIds as $gejalaId) {
+            $gejala = DataGejala::find($gejalaId);
+
+            if ($gejala) {
+                $penyakits = $gejala->penyakits->pluck('kode_penyakit');
+                $dataGejala[] = [
+                    'm' => $gejala->nilai,
+                    'teta' => $gejala->teta,
+                    'penyakits' => $penyakits,
+                ];
             }
         }
-        $persen = $hasil_diagnosa[0]['nilai_cf']/1;
-        $persentase = $persen*100;
-        $diagnosa = Hasil::create([
-            'user_id'   =>  Auth::user()->id,
-            'kode_penyakit' =>  $hasil_diagnosa[0]['kode_penyakit'],
-            'nilai_cf'  =>  $hasil_diagnosa[0]['nilai_cf'],
-            'persentase'    => $persentase, 
-        ]);
-        $notification = [
-            'hasil' =>  $hasil,
-            'diagnosa' =>  $diagnosa,
+
+        $pembagi = [
+            '0' =>  [
+                    'm' =>  $dataGejala[0]['m'],
+                    'penyakits' =>  $dataGejala[0]['penyakits'],
+                ],
         ];
+        
+        $tetam = $dataGejala[0]['teta'];
+        $pembagiBaru_last = 0;
+        $m_last_sebelumnya = 0;
+        for ($i=1; $i <count($dataGejala) ; $i++) { 
+            $no=1;
+            $teta_last = 0;
+            for ($j=0; $j < count($pembagi); $j++) { 
+                $tetabaru = 0;
+                // return 
+                $penyakits_pembagi = ($pembagi[$j]['penyakits'] instanceof Collection) ? $pembagi[$j]['penyakits']->toArray() : $pembagi[$j]['penyakits'];
+                $penyakits_dataGejala = ($dataGejala[$i]['penyakits'] instanceof Collection) ? $dataGejala[$i]['penyakits']->toArray() : $dataGejala[$i]['penyakits'];
+
+                $common_penyakits = array_intersect($penyakits_pembagi, $penyakits_dataGejala);
+                // $common_penyakits = array_intersect($pembagi[$j]['penyakits']->toArray(), $dataGejala[$i]['penyakits']->toArray());
+                usort($common_penyakits, function($a, $b) {
+                    // Ubah ke angka untuk membandingkan dengan urutan numerik yang benar
+                    $a = (int)$a;
+                    $b = (int)$b;
+
+                    // Mengurutkan dengan urutan "001", "004", hingga "005"
+                    return $a - $b;
+                });
+                $jumlah =  count($common_penyakits);
+                if ($jumlah > 0) {
+                    $m_last = ($pembagi[$j]['m'] * $dataGejala[$i]['m']) + ($tetam * $dataGejala[$i]['m']);
+                    $teta_last = $tetam * $dataGejala[$i]['teta'];
+                    $pembagibaru_last = $pembagi[$j]['m'] * $dataGejala[$i]['teta'];
+                    $indexBaru_last = [
+                        'm' => $m_last,
+                        'penyakits' => $common_penyakits,
+                    ];
+                    $m_last_sebelumnya = $m_last;
+                }else{
+                    $m_last = $m_last_sebelumnya;
+                    $teta   =  $pembagi[$j]['m'] * $dataGejala[$i]['m'];
+                    $teta_last = $tetam * $dataGejala[$i]['teta'] + $teta;
+                    $pembagibaru_last = $pembagi[$j]['m'] * $dataGejala[$i]['teta'];
+                    $indexBaru_last = [
+                        'm' => $m_last,
+                        'penyakits' => $common_penyakits,
+                    ];
+                    $m_last_sebelumnya = $m_last;
+                }
+                $pembagiBaru_last += $pembagibaru_last; // Akumulasi nilai pembagiBaru_last
+                // $pembagi[0]['m'] = $pembagiBaru_last;
+                // $pembagi[] = $indexBaru_last;
+            }
+            $pembagi[0]['m'] = $pembagibaru_last;
+            $pembagi[] = $indexBaru_last;
+            // return $pembagi;
+        }
+        // return "Nilai m_last: " . $m_last . "<br>";
+        // return "Nilai teta_last: " . $teta_last . "<br>";
+        // return "Nilai pembagibaru_last: ";
+        // return $pembagibaru_last;
+        // return "<br>";
+        // return "Nilai indexBaru_last: ";
+        // return $indexBaru_last;
+        // return "Nilai m_last: " . $m_last . "<br>"
+        //  . "Nilai teta_last: " . $teta_last . "<br>"
+        //  . "Nilai pembagibaru_last: " . json_encode($pembagibaru_last) . "<br>"
+        //  . "Nilai indexBaru_last: " . json_encode($indexBaru_last);
+
+        $hasil = $indexBaru_last;
+        $penyakit = DataPenyakit::where('kode_penyakit',$indexBaru_last['penyakits'][0])->first();
         $gejalas = DataGejala::all();
-        return view('diagnosa',[
-            'hasil'  =>  $notification['hasil'],
-            'diagnosa'  =>  $notification['diagnosa'],
-            'gejalas'  =>  $gejalas
-        ]);
+        return view('diagnosa',compact('hasil','gejalas','penyakit','m_last'));
     }
+
+    
 }

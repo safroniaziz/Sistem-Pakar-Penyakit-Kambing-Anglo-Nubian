@@ -12,4 +12,9 @@ class DataGejala extends Model
     protected $keyType = 'string';
     use HasFactory;
     protected $guarded = [];
+
+    public function penyakits()
+    {
+        return $this->belongsToMany(DataPenyakit::class, 'basic_pengetahuans', 'kode_gejala', 'kode_penyakit');
+    }
 }

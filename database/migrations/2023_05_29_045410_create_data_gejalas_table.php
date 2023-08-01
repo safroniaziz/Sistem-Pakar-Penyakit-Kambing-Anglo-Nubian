@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('data_gejalas', function (Blueprint $table) {
             $table->string('kode_gejala')->unique();
             $table->string('nama_gejala');
-            $table->string('foto')->nullable();
-            $table->string('video')->nullable();
+            $table->double('nilai');
+            $table->double('teta');
             $table->timestamps();
             $table->primary('kode_gejala');
         });
